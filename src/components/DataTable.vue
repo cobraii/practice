@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <table>
       <thead>
         <tr>
@@ -52,64 +52,124 @@
         <template v-for="(row, index) in rows" :key="index">
           <tr>
             <td :rowspan="2">{{ index + 1 }}</td>
-            <td :rowspan="2">{{ row.date }}</td>
-            <td :rowspan="2">{{ row.controlSum }}</td>
-            <td :rowspan="2">{{ row.k3 }}</td>
-            <td :rowspan="2">{{ row.pit }}</td>
-            <td :rowspan="2">{{ row.c35 }}</td>
-            <td :rowspan="2">{{ row.pin7MK }}</td>
-            <td>{{ row.Upit }}</td>
-            <td>{{ row.c41 }}</td>
-            <td>{{ row.c14 }}</td>
-            <td>{{ row.c1 }}</td>
-            <td>{{ row.c45 }}</td>
-            <td>{{ row.triangle }}</td>
-            <td>{{ row.downTriangle }}</td>
-            <td>{{ row.spO2 }}</td>
-            <td>{{ row.pr }}</td>
-            <td>{{ row.triangleA }}</td>
-            <td>{{ row.akb }}</td>
-            <td>{{ row.pin61MK }}</td>
-            <td>{{ row.c35Akb }}</td>
-            <td>{{ row.c35Ip }}</td>
-            <td>{{ row.vd25 }}</td>
-            <td>{{ row.vbAT }}</td>
-            <td>{{ row.pin60MKAkb }}</td>
-            <td>{{ row.pin60MKIp }}</td>
-            <td>{{ row.vd29 }}</td>
-            <td>{{ row.inotMA }}</td>
-            <td>{{ row.r66 }}</td>
-            <td>{{ row.lNoObstacle }}</td>
-            <td>{{ row.lWithObstacle }}</td>
-            <td>{{ row.pin1DA4 }}</td>
-            <td>{{ row.pin8DA4 }}</td>
+            <td :rowspan="2"><textarea class="wide"v-model="row.date" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td :rowspan="2"><textarea v-model="row.controlSum" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td :rowspan="2"><textarea v-model="row.k3" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td :rowspan="2"><textarea v-model="row.pit" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td :rowspan="2"><textarea v-model="row.c35" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td :rowspan="2"><textarea v-model="row.pin7MK" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.Upit" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c41" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c14" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c1" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c45" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.triangle" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.downTriangle" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.spO2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.pr" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.triangleA" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.akb" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.pin61MK" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td>
+              <select v-model="row.c35Akb" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td>
+              <select v-model="row.c35Ip" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td><textarea v-model="row.vd25" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.vbAT" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td>
+              <select v-model="row.pin60MKAkb" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td>
+              <select v-model="row.pin60MKIp" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td><textarea v-model="row.vd29" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.inotMA" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.r66" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td>
+              <select v-model="row.lNoObstacle" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td>
+              <select v-model="row.lWithObstacle" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td><textarea v-model="row.pin1DA4" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.pin8DA4" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
           </tr>
           <tr>
-            <td>{{ row.Upit2 }}</td>
-            <td>{{ row.c412 }}</td>
-            <td>{{ row.c142 }}</td>
-            <td>{{ row.c12 }}</td>
-            <td>{{ row.c452 }}</td>
-            <td>{{ row.triangle2 }}</td>
-            <td>{{ row.downTriangle2 }}</td>
-            <td>{{ row.spO22 }}</td>
-            <td>{{ row.pr2 }}</td>
-            <td>{{ row.triangleA2 }}</td>
-            <td>{{ row.akb2 }}</td>
-            <td>{{ row.pin61MK }}</td>
-            <td>{{ row.c35Akb2 }}</td>
-            <td>{{ row.c35Ip2 }}</td>
-            <td>{{ row.vd252 }}</td>
-            <td>{{ row.vbAT2 }}</td>
-            <td>{{ row.pin60MKAkb2 }}</td>
-            <td>{{ row.pin60MKIp2 }}</td>
-            <td>{{ row.vd292 }}</td>
-            <td>{{ row.inotMA2 }}</td>
-            <td>{{ row.r662 }}</td>
-            <td>{{ row.lNoObstacle2 }}</td>
-            <td>{{ row.lWithObstacle2 }}</td>
-            <td>{{ row.pin1DA42 }}</td>
-            <td>{{ row.pin8DA42 }}</td>
+            <td><textarea v-model="row.Upit2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c412" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c142" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c12" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.c452" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.triangle2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.downTriangle2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.spO22" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.pr2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.triangleA2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.akb2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.pin61MK2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td>
+              <select v-model="row.c35Akb2" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td>
+              <select v-model="row.c35Ip2" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td><textarea v-model="row.vd252" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.vbAT2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td>
+              <select v-model="row.pin60MKAkb2" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td>
+              <select v-model="row.pin60MKIp2" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td><textarea v-model="row.vd292" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.inotMA2" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.r662" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td>
+              <select v-model="row.lNoObstacle2" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td>
+              <select v-model="row.lWithObstacle2" @input="autoResize" @keydown="handleKeyDown">
+                <option value="Соотв.">Соотв.</option>
+                <option value="Несоотв.">Несоотв.</option>
+              </select>
+            </td>
+            <td><textarea v-model="row.pin1DA42" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
+            <td><textarea v-model="row.pin8DA42" @input="autoResize" @keydown="handleKeyDown"></textarea></td>
           </tr>
         </template>
       </tbody>
@@ -284,17 +344,64 @@ export default {
       ],
     };
   },
+  methods: {
+    handleKeyDown(event) {
+      if (event.key === 'Enter' || event.key === 'Tab') {
+        event.preventDefault();
+        this.focusNext(event);
+      }
+    },
+    focusNext(event) {
+      const currentInput = event.target;
+      const inputs = Array.from(document.querySelectorAll('textarea'));
+      const currentIndex = inputs.indexOf(currentInput);
+      const nextInput = inputs[currentIndex + 1];
+      if (nextInput) {
+        nextInput.focus();
+      }
+    },
+    autoResize(event) {
+      const textarea = event.target;
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    },
+  },
 };
 </script>
 
-<style>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid #000;
-    padding: 5px;
-    text-align: center;
-  }
+<style scoped>
+.container{
+  width: 1440px;
+  margin-bottom: 100px
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #000;
+  padding: 5px;
+  text-align: center;
+}
+textarea {
+  min-width: 50px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  padding: 5px;
+  box-sizing: border-box;
+  resize: none;
+  overflow-y: hidden;
+}
+textarea:focus {
+  outline: none;
+  background-color: #f0f0f0;
+}
+textarea.wide {
+  min-width: 70px;
+}
+select {
+  width: 60px;
+  box-sizing: border-box;
+}
 </style>
